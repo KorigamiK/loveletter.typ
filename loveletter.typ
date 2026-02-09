@@ -13,6 +13,11 @@
 #let cover-closing = "With all my love,"
 
 #let doc-title = "A Letter For You"
+#let end-title = "Forever Yours"
+#let end-message = [
+  Thank you for reading my heart.
+]
+#let end-signoff = "Always,"
 
 #let accent = rgb("#c93c62")
 #let accent-deep = rgb("#7d1d3d")
@@ -53,7 +58,7 @@
   width: 100%,
   height: 100%,
   inset: (x: 16mm, y: 14mm),
-  fill: gradient.linear(cream, blush),
+  fill: cream,
   stroke: 1pt + rgb("#efb9ca"),
   radius: 9mm,
   clip: true,
@@ -72,7 +77,7 @@
   #align(center)[
     #text(style: "italic", size: 14pt, fill: accent)[To #recipient]
   ]
-  #v(4mm)
+  #v(3mm)
   #align(center)[
     #text(
       font: "Libertinus Serif Display",
@@ -81,13 +86,18 @@
       fill: gradient.linear(accent, accent-deep),
     )[#cover-title]
   ]
-  #v(2mm)
+  #v(3mm)
   #align(center)[
     #text(size: 11pt, fill: gold)[#sym.suit.heart.filled #sym.suit.heart.filled #sym.suit.heart.filled]
   ]
-  #v(12mm)
+  #v(8mm)
 
-  #cover-message
+  #align(center)[
+    #block(width: 84%)[
+      #set par(justify: false, first-line-indent: 0em, leading: 1.45em)
+      #cover-message
+    ]
+  ]
 
   #v(1fr)
   #align(right + bottom)[
@@ -165,4 +175,62 @@ Continue writing as a normal document. This layout keeps the page clean, readabl
   #text(fill: rgb("#6e5a65"))[With care,]
   \
   #text(size: 14pt, fill: accent)[#sender]
+]
+
+#pagebreak()
+#set page(
+  width: 8.5in,
+  height: 11in,
+  margin: (x: 0.7in, y: 0.7in),
+  fill: rgb("#fff1f6"),
+  background: [
+    #let heart(size, fill) = text(size: size, fill: fill)[#sym.suit.heart.filled]
+
+    #place(top + left, dx: -2mm, dy: -2mm, scope: "parent", float: true)[
+      #rotate(-16deg)[#heart(28pt, blush)]
+    ]
+    #place(top + right, dx: 3mm, dy: -1mm, scope: "parent", float: true)[
+      #rotate(14deg)[#heart(24pt, petal)]
+    ]
+    #place(bottom + right, dx: 1mm, dy: 2mm, scope: "parent", float: true)[
+      #rotate(16deg)[#heart(30pt, blush)]
+    ]
+    #place(bottom + left, dx: -2mm, dy: 1mm, scope: "parent", float: true)[
+      #rotate(-11deg)[#heart(22pt, petal)]
+    ]
+  ],
+  header: none,
+  footer: none,
+)
+
+#set text(font: "Libertinus Serif", size: 12pt, fill: ink)
+#set par(justify: true, first-line-indent: 0em, leading: 1.3em)
+
+#block(
+  width: 100%,
+  height: 100%,
+  inset: (x: 16mm, y: 14mm),
+  fill: gradient.linear(cream, blush),
+  stroke: 1pt + rgb("#efb9ca"),
+  radius: 9mm,
+  clip: true,
+)[
+  #align(center + horizon)[
+    #text(size: 11pt, fill: gold)[#sym.suit.heart.filled #h(4pt) #sym.suit.heart.filled #h(4pt) #sym.suit.heart.filled]
+    #v(10mm)
+    #text(
+      font: "Libertinus Serif Display",
+      weight: "bold",
+      size: 30pt,
+      fill: gradient.linear(accent, accent-deep),
+    )[#end-title]
+    #v(8mm)
+    #end-message
+  ]
+
+  #align(right + bottom)[
+    #text(style: "italic", size: 14pt, fill: accent-deep)[#end-signoff]
+    \
+    #text(style: "italic", size: 18pt, fill: accent)[#sender]
+  ]
 ]
